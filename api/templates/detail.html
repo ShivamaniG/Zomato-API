@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Detail</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .header img {
+            width: 150px;
+            height: auto;
+            margin-right: 15px;
+            margin-left: 200px;
+        }
+         body {
+            font-family: "Okra", "Helvetica", serif;
+        }
+        .card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 320px; /* Placeholder height */
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+
+        .card-rating {
+            display: flex;
+            align-items: center;
+            color: #f39c12; /* Golden color */
+            margin-bottom: 10px;
+        }
+
+        .card-rating .fa-star {
+            color: #f39c12; /* Golden color */
+        }
+
+        .card-rating .fa-star.empty {
+            color: #dcdcdc; /* Gray color for empty stars */
+        }
+
+        .card-cuisine,
+        .card-address {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .card-cost {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .d-flex-between {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .d-flex-between .card-rating {
+            margin-bottom: 0; /* Remove margin-bottom for alignment */
+        }
+        
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <img src="https://b.zmtcdn.com/web_assets/b40b97e677bc7b2ca77c58c61db266fe1603954218.png" alt="Logo">
+    </header>
+    <div class="container mt-5">
+        <!-- <div class="card"> -->
+            <img src="https://via.placeholder.com/300" class="card-img-top" alt="Restaurant Image">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="card-title">{{ restaurant['Restaurant Name'] }}</div>
+                    <div class="card-rating">
+                        <!-- Star rating based on value -->
+                        {% for i in range(1, 6) %}
+                            <span class="fa fa-star {{ 'empty' if i > restaurant['Aggregate rating'] | float else '' }}"></span>
+                        {% endfor %}
+                        <span class="rating-text ml-2" style="font-weight: bold;font-size: 1.25rem;">{{ restaurant['Aggregate rating'] }}</span>
+                    </div>
+                </div>
+                <div class="d-flex-between">
+                    <div class="card-cuisine">{{ restaurant['Cuisines'] }}</div>
+                    <div class="card-cost">{{ restaurant['Average Cost for two'] }} {{ restaurant['Currency'] }}</div>
+                </div>
+                <div class="card-address">{{ restaurant['Address'] }}, {{ restaurant['City'] }}</div>
+            </div>
+        <!-- </div> -->
+        <div class="text-left mt-4">
+            <a href="/" class="btn btn-secondary">Back</a>
+        </div>
+    </div>
+</body>
+
+</html>
